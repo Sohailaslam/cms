@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @visitor.name %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @visitor.company %>
+</p>
+
+<p>
+  <strong>Designation:</strong>
+  <%= @visitor.designation %>
+</p>
+
+<p>
+  <strong>Contact number:</strong>
+  <%= @visitor.contact_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @visitor.email %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @visitor.notes %>
+</p>
+
+<%= link_to 'Edit', edit_visitor_path(@visitor) %> |
+<%= link_to 'Back', visitors_path %>
