@@ -1,0 +1,12 @@
+<div class="container">
+    
+    <%= bootstrap_form_tag url: '/admin_panel/create_users' do |f| %>
+        <%= f.text_field :name, required: true,placeholder: 'First Last' %>
+        <%= f.email_field :email, required: true,placeholder: 'name@example.com' %>
+        <%= f.password_field  :password,required: true %>
+        <%= f.password_field  :password_confirmation,required: true %>
+        <%= f.text_field :designation, required: true,placeholder: 'Manager/Associate' %>
+        <%= f.text_field :contact_number, required: true,placeholder: '0300 1234567' %>
+        <%= f.submit %>
+    <% end %>
+</div>

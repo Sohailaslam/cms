@@ -8,6 +8,7 @@ gem 'pg'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+gem 'bootstrap_form'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

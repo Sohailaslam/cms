@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   get 'admin_panel/index'
+  get 'admin_panel/add_users'
   get 'admin_panel' => 'admin_panel#index'
+  post 'admin_panel/create_users'
   resources :visitors
   resources :products
   resources :events
