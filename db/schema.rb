@@ -11,17 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831115011) do
+ActiveRecord::Schema.define(version: 20170913090610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
     t.integer  "event_type"
-    t.text     "notes"
+    t.string   "name"
+    t.integer  "user_id"
     t.text     "location"
     t.integer  "no_of_days"
-    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.integer  "visitor_id"
+    t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170831115011) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "manager_id"
     t.string   "name",                                null: false
     t.string   "contact_number"
     t.string   "designation"
@@ -63,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170831115011) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["manager_id"], name: "index_users_on_manager_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: :cascade do |t|
@@ -74,6 +83,8 @@ ActiveRecord::Schema.define(version: 20170831115011) do
 
   create_table "visitors", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
+    t.integer  "event_id"
     t.string   "company"
     t.string   "designation"
     t.string   "contact_number"

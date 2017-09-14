@@ -10,7 +10,22 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.collection_select :event_id, Event.all.order(:name), :id, :name, {:prompt => 'Choose an Event...',:hide_label => true } %>
+  
+  </div>
+  
+  <div class="field">
+    <%= label_tag :name %><br>
+    <%= select_tag :products,options_for_select(@products), {:multiple => true}  %>
+  
+  </div>
 
+  
+  
+  
+  
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>

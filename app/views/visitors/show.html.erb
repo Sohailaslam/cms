@@ -11,6 +11,15 @@
 </p>
 
 <p>
+  <strong>Products:</strong>
+  <% @visitor.products.each do |product| %>
+  <%= product.name %>
+  <% end %>
+    
+</p>
+
+
+<p>
   <strong>Designation:</strong>
   <%= @visitor.designation %>
 </p>

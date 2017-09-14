@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Event type</th>
-      <th>Notes</th>
       <th>Location</th>
       <th>No of days</th>
       <th>User</th>
@@ -18,7 +17,6 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.event_type %></td>
-        <td><%= event.notes %></td>
         <td><%= event.location %></td>
         <td><%= event.no_of_days %></td>
         <td><%= event.user_id %></td>

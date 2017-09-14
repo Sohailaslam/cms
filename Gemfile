@@ -48,3 +48,8 @@ group :development do
   gem 'spring'
 end
 
+
+
+gem 'database_cleaner'
+
+gem "figaro"

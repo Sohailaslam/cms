@@ -15,6 +15,7 @@ class VisitorsController < ApplicationController
   # GET /visitors/new
   def new
     @visitor = Visitor.new
+    @products = Product.all.map(&:name)
   end
 
   # GET /visitors/1/edit
@@ -28,6 +29,13 @@ class VisitorsController < ApplicationController
 
     respond_to do |format|
       if @visitor.save
+        @products = params[:products]
+        @products.each do |product|
+          
+          Interest.create(product_id: Product.find_by(name: product).id,visitor_id: @visitor.id)
+          
+        end
+        VisitorMailer.welcome_email(@visitor).deliver_now
         format.html { redirect_to @visitor, notice: 'Visitor was successfully created.' }
         format.json { render :show, status: :created, location: @visitor }
       else
@@ -69,6 +77,6 @@ class VisitorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def visitor_params
-      params.require(:visitor).permit(:name, :company, :designation, :contact_number, :email, :notes)
+      params.require(:visitor).permit(:name, :user_id,:event_id,:company, :designation, :contact_number, :email, :notes,:products => [])
     end
 end

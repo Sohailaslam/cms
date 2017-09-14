@@ -21,6 +21,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
 
      #########################
+      t.references :manager, index: true
       t.string :name, null: false
       t.string :contact_number
       t.string :designation

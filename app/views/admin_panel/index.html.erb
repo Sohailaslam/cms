@@ -1,0 +1,24 @@
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Designation</th>
+        <th>Phone number</th>
+        <th>Actions</th>
+    </tr>
+    
+
+<% @users.each do |user| %>
+    <tr>
+        <td><%= user.name %></td>
+        <td><%= user.roles.first.name %></td>
+        <td><%= user.designation %></td>
+        <td><%= user.contact_number %></td>
+        <td><%= link_to "make manager","/visitors" %>
+        <%= link_to "make associate","/visitors" %></td>
+    </tr>
+
+<% end %>
+
+</table>
