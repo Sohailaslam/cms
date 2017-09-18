@@ -23,7 +23,7 @@
             <%= event.name %>
             <% end %></td>
         <td>
-        <% if user_signed_in? and current_user.has_role? :manager %>
+        <% if user_signed_in? and current_user.has_role? :manager or  current_user.has_role? :admin %>
         <%= link_to "Assign Events",{action: 'assign_events',user_id: user.id } %></td>
         <% end %>
     </tr>
