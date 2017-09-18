@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Notes:</strong>
-  <%= @event.notes %>
+  <strong>Name:</strong>
+  <%= @event.name %>
 </p>
 
 <p>
@@ -20,10 +20,7 @@
   <%= @event.no_of_days %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @event.user_id %>
-</p>
+
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

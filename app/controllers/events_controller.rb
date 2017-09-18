@@ -1,10 +1,15 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if current_user.has_role? :associate
+      @events = current_user.events
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1
@@ -66,9 +71,11 @@ class EventsController < ApplicationController
     def set_event
       @event = Event.find(params[:id])
     end
+    
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_type, :notes, :location, :no_of_days, :user_id)
+      params.require(:event).permit(:event_type, :name, :location, :no_of_days)
     end
 end

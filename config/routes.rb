@@ -2,17 +2,23 @@ Rails.application.routes.draw do
   
   get 'admin_panel/index'
   get 'admin_panel/add_users'
+  get 'admin_panel/assign_events'
+  post 'admin_panel/assign_events_new'
   get 'admin_panel' => 'admin_panel#index'
   post 'admin_panel/create_users'
-  resources :visitors
+  # post 'visitors/excel' => "visitors#excel"
   resources :products
-  resources :events
+  resources :events do
+    resources :visitors
+    post 'visitors/export'
+  end
+  
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'admin_panel#index'
+  root 'events#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -62,4 +68,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  # match "*path" => redirect("/"),via: [:get, :post]
 end

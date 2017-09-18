@@ -5,5 +5,11 @@ class Visitor < ActiveRecord::Base
     belongs_to :user
     belongs_to :event
     
-    
+    def self.search(user)
+        if !user.nil?
+            where(user_id: user)
+        else
+            all
+        end
+    end
 end

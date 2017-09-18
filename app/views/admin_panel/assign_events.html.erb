@@ -1,0 +1,11 @@
+<%= form_tag '/admin_panel/assign_events_new', method: :post do |f| %>
+    <h2>You are assigning events to <%= @user.name %>. Click <a href="/admin_panel">here</a> to cancel.</h2>
+  <div class="field">
+    <%= select_tag :events,options_for_select(@events), {:multiple => true}  %>
+    <%= hidden_field_tag :user_id, @user.id %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Assign" %>
+  </div>
+  
+<% end %>

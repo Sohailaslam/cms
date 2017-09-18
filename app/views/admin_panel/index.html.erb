@@ -1,11 +1,16 @@
 
-<table class="table">
+<div class="container">
+<h4><%= link_to "New User","/admin_panel/add_users",class: "btn btn-primary pull-right" %></h4>
+
+<h2>Listing All Users</h2>
+<div class="table-responsive"> 
+<table class="table table-striped table-hover">
     <tr>
         <th>Name</th>
         <th>Role</th>
         <th>Designation</th>
-        <th>Phone number</th>
-        <th>Actions</th>
+        <th>Assigned Events</th>
+        <th>Events</th>
     </tr>
     
 
@@ -14,13 +19,18 @@
         <td><%= user.name %></td>
         <td><%= user.roles.first.name %></td>
         <td><%= user.designation %></td>
-        <td><%= user.contact_number %></td>
-        <td><%= link_to "make manager","/visitors" %>
-        <%= link_to "make associate","/visitors" %></td>
+        <td><% user.events.each do |event| %>
+            <%= event.name %>
+            <% end %></td>
+        <td>
+        <% if user_signed_in? and current_user.has_role? :manager %>
+        <%= link_to "Assign Events",{action: 'assign_events',user_id: user.id } %></td>
+        <% end %>
     </tr>
 
 <% end %>
 
 </table>
+</div>
+</div>
 
-<%= link_to "Add Users","/admin_panel/add_users" %>

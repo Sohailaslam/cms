@@ -1,6 +1,16 @@
 class AdminPanelController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @users = User.all.order(:name)
+    if user_signed_in? and current_user.has_role? :admin
+      @users = User.with_any_role('manager')
+    elsif user_signed_in? and current_user.has_role? :manager
+      @users = current_user.associates
+    elsif  user_signed_in? and current_user.has_role? :associate
+      # @users = User.all
+      redirect_to events_path
+    # else
+    #   @users = User.all
+    end
   end
   def add_users
     @user = User.new
@@ -17,5 +27,18 @@ class AdminPanelController < ApplicationController
         redirect_to '/admin_panel',notice: "Associate added successfully."  
       end
     end
+  end
+  
+  def assign_events
+    @user = User.find(params[:user_id])
+    @events = Event.all.map(&:name)
+    
+  end
+  def assign_events_new
+    params[:events].each do |event|
+      
+      AssignedEvent.create(user_id: params[:user_id],event_id: Event.find_by(name: event).id)
+    end
+    redirect_to '/admin_panel',notice: "Event successfully Assigned"
   end
 end

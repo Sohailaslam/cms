@@ -14,3 +14,16 @@
  *= require_self
  *= require_bootstrap
  */
+.scholarship-search{
+    background: #fff;
+    padding:38px 0;
+    margin-bottom: 40px;
+    width:20%;
+    margin: 0 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.topNav{
+    background: #48CECA;
+}

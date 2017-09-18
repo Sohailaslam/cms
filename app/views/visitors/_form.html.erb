@@ -1,4 +1,7 @@
-<%= form_for(@visitor) do |f| %>
+<div class="row">
+    <div class="container">
+ <div class="col-md-6 col-md-offset-3">
+<%= form_for [@event,@visitor] do |f| %>
   <% if @visitor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@visitor.errors.count, "error") %> prohibited this visitor from being saved:</h2>
@@ -10,47 +13,40 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.collection_select :event_id, Event.all.order(:name), :id, :name, {:prompt => 'Choose an Event...',:hide_label => true } %>
-  
-  </div>
-  
-  <div class="field">
-    <%= label_tag :name %><br>
-    <%= select_tag :products,options_for_select(@products), {:multiple => true}  %>
-  
-  </div>
 
-  
-  
-  
-  
+   
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <label> <%= f.label :name %> </label>
+  <input class="form-control input-md" required="required"  <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
+    <label><%= f.label :company %></label>
+   <input class="form-control input-md" required="required" <%= f.text_field :company %>
   </div>
   <div class="field">
-    <%= f.label :designation %><br>
-    <%= f.text_field :designation %>
+   <label> <%= f.label :designation %></label>
+   <input class="form-control input-md" required="required" <%= f.text_field :designation %>
   </div>
   <div class="field">
-    <%= f.label :contact_number %><br>
-    <%= f.text_field :contact_number %>
+   </label> <%= label_tag :product %></label>
+  <select class="form-control input-md" required="required" style="height:105px; margin-bottom: 10px;" multiple  <%= select_tag :products,options_for_select(@products), {:multiple => true}  %>
+  </select>
+  <div class="field">
+   <label> <%= f.label :contact_number %></label>
+   <input class="form-control input-md" required="required" <%= f.text_field :contact_number %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+   <label> <%= f.label :email %></label>
+  <input class="form-control input-md" required="required"  <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
+   <label> <%= f.label :notes %></label>
+  <textarea class="form-control input-md" <%= f.text_area :notes %> </textarea>
   </div>
   <div class="actions">
-    <%= f.submit %>
+   <input class="btn btn-success" <%= f.submit %>
+  </div>
+  </div>
+  </div>
   </div>
 <% end %>

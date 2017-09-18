@@ -50,6 +50,7 @@ group :development do
 end
 
 
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git'
 
 gem 'database_cleaner'
 

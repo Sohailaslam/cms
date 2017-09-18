@@ -5,14 +5,145 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
-  <% if user_signed_in? %>
-    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to 'Login', new_user_session_path %>
-  <% end %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<script>
+  	$(document).ready(function(){
+  		$(window).scroll(function(){console.log($(window).scrollTop());
+		    if($(window).scrollTop() > 40)
+		    {
+		        $("#header").css('padding-top','0px');
+		        $("#header").css('padding-bottom','0px');
+		    }
+		    else{
+		    	$("#header").css('padding-top','15px');
+		        $("#header").css('padding-bottom','15px');
+		    }
+		});	
+  	});
+  </script>
 <body>
+
+		<div>
+
+				<!-- TOP NAV -->
+				<header class="topNav">
+					<div class="container">
+
+						 <!--Mobile Menu Button -->
+						<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- BUTTONS -->
+						<ul class="pull-right nav nav-pills nav-second-main">
+
+
+						<!-- Logo -->
+						<a class="pull-left" href="/admin_panel">
+							<!--<img src="/_logo.png" alt=""/>-->
+							<h4>SystemPlus</h4>
+							<!--<= image_tag("/edu logo.png", alt: "", height: 200, width: 200) %>-->
+						</a>
+
+						<div class="navbar-collapse pull-right nav-main-collapse collapse ">
+							<nav class="nav-main">
+
+								<ul id="topMain" class="nav nav-pills nav-main">
+									
+								<% if user_signed_in? %>
+									<% if current_user.has_role? :admin or current_user.has_role? :manager %>
+										<li class="dropdown"><!-- SHOP -->
+											<a href="/admin_panel/index" class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												Admin Panel </a>
+											</a>
+											<!--<ul class="dropdown-menu">-->
+											<!--	<li >-->
+											<!--		<a  class="button2" href="/admin_panel/index">-->
+											<!--			Site Statistics-->
+											<!--		</a>-->
+											<!--	</li>-->
+											<!--	<li>-->
+											<!--		<a  class="button2" href="/profiles">-->
+											<!--			All Users-->
+											<!--		</a>-->
+											<!--	</li>-->
+											<!--	<li>-->
+											<!--		<a  class="button2" href="/tags">-->
+											<!--			Tags Management-->
+											<!--		</a>-->
+											<!--	</li>-->
+											<!--	<li>-->
+											<!--		<a class="button2" href="/flagged_posts">-->
+											<!--			Flagged Posts-->
+											<!--		</a>-->
+											<!--	</li>-->
+											<!--	<li>-->
+											<!--		<a class="button2" href="/interested_users">-->
+											<!--			Interested Users-->
+											<!--		</a>-->
+											<!--	</li>-->
+											<!--</ul>-->
+	
+										</li>
+									
+									<li class="dropdown"><!-- HOME -->
+										<a class="dropdown-toggle" href="/events">
+											Events
+										</a>
+										
+										<% if user_signed_in? and current_user.has_role? :admin %>
+											<ul class="dropdown-menu">
+												<li>
+													<a class="button2" href="/events/new">
+														NEW
+													</a>
+												</li>
+								
+											</ul>
+										<% end %>
+									</li>
+								
+									<li class="dropdown"><!-- BLOG -->
+										<a href="/products" class="dropdown-toggle disabled" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											Products </a>
+										</a>
+										<% if user_signed_in? and current_user.has_role? :admin %>
+											<ul class="dropdown-menu">
+												<li>
+													<a class="button2" href="/universities/new">
+														NEW
+													</a>
+												<!--	<ul class="dropdown-menu">-->
+												<!--		<li><a href="blog-default-aside-left.html">LEFT SIDEBAR</a></li>-->
+												<!--		<li><a href="blog-default-aside-right.html">RIGHT SIDEBAR</a></li>-->
+												<!--		<li><a href="blog-default-aside-both.html">BOTH SIDEBAR</a></li>-->
+												<!--		<li><a href="blog-default-fullwidth.html">FULL WIDTH</a></li>-->
+												<!--	</ul>-->
+												</li>
+									<!--</li>-->
+											</ul>
+										<% end %>
+									</li>
+									
+									<% end %>
+								<% end %>
+									<li>
+									        <% if user_signed_in? %>
+									          <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
+									        <% else %>
+									          <%= link_to 'Login', new_user_session_path %>
+									        <% end %>
+									</li>
+								</ul>
+
+							</nav>
+						</div>
+
+					</div>
+				</header>
+				<!-- /Top Nav -->
+			</div>
 <% if notice %>
 	<p><%= notice %></p>
 <% end %>
