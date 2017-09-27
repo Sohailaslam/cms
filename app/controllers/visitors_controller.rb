@@ -1,5 +1,5 @@
 class VisitorsController < ApplicationController
-  before_action :set_visitor, only: [:show, :edit, :update, :destroy]
+  before_action :set_visitor, only: [:show, :edit, :update, :destroy], except: [:export]
   before_action :set_event
 
   # GET /visitors
