@@ -3,7 +3,7 @@
 <div class="container">
 <h1>Listing Visitors for <%= @event.name %></h1>
 <%= link_to "New Visitor for #{@event.name}", new_event_visitor_path(@event),class: 'btn btn-xs btn-info pull-right' %>
-<%= link_to "Download visitors for #{@event.name}", event_visitors_export_path(@event),method: :post,class: 'btn btn-xs btn-primary pull-right' %>
+<%= link_to "Download visitors for #{@event.name}", event_export_path(@event),method: :post,class: 'btn btn-xs btn-primary pull-right' %>
 
 
     <div class="scholarship-search col-md-12 col-sm-12 col-centered">
